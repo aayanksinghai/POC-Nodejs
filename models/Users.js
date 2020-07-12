@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
         maxlength: [50, 'Name can not be more than 50 characters']
     },
     DOB: {
-        type: Date,
+        type: String,
         required: [true, 'Please add your Date of Birth']
     },
     MaritalStatus: {
@@ -109,7 +109,69 @@ const UserSchema = new mongoose.Schema({
         default: 'no-photo.jpg'
     },
     //Children and Height
-
+    Height: {
+        type: String,
+        required: [true, 'Please add your height'],
+        enum: [
+            "4 ft (122 cm)",
+            "4 ft 1 inch (124 cm)",
+            "4 ft 2 inch (128 cm)",
+            "4 ft 3 inch (131 cm)",
+            "4 ft 4 inch (134 cm)",
+            "4 ft 5 inch (135 cm)",
+            "4 ft 6 inch (137 cm)",
+            "4 ft 7 inch (140 cm)",
+            "4 ft 8 inch (142 cm)",
+            "4 ft 9 inch (145 cm)",
+            "4 ft 10 inch (147 cm)",
+            "4 ft 11 inch (150 cm)",
+            "5 ft (152 cm)",
+            "5 ft 1 inch (155 cm)",
+            "5 ft 2 inch (158 cm)",
+            "5 ft 3 inch (160 cm)",
+            "5 ft 4 inch (163 cm)",
+            "5 ft 5 inch (165 cm)",
+            "5 ft 6 inch (168 cm)",
+            "5 ft 7 inch (170 cm)",
+            "5 ft 8 inch (173 cm)",
+            "5 ft 9 inch (175 cm)",
+            "5 ft 10 inch (178 cm)",
+            "5 ft 11 inch (180 cm)",
+            "6 ft (183 cm)",
+            "6 ft 1 inch (185 cm)",
+            "6 ft 2 inch (188 cm)",
+            "6 ft 3 inch (191 cm)",
+            "6 ft 4 inch (193 cm)",
+            "6 ft 5 inch (196 cm)",
+            "6 ft 6 inch (198 cm)",
+            "6 ft 7 inch (201 cm)",
+            "6 ft 8 inch (203 cm)",
+            "6 ft 9 inch (206 cm)",
+            "6 ft 10 inch (208 cm)",
+            "6 ft 11 inch (211 cm)",
+            "7 ft (213 cm) plus"
+        ]
+    },
+    Children: {
+        type: String,
+        required: [true, "Please mention children"],
+        enum: ['Yes', 'No'],
+        NoOfChildren: {
+            type: Number,
+            min: 0,
+            max: 5,
+            default: 0,
+            ChildrenDetails: {
+                type: [],
+                enum: ['Daughter', 'Son'],
+                default: null,
+                Age: {
+                    type: Number,
+                    default: 0
+                }
+            }
+        }
+    },
     //Education & Career
     Education: {
         type: String,
