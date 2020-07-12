@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
+const fileupload = require('express-fileupload')
 const connectDB = require('./config/db')
 
 // Load env vars
@@ -19,6 +20,10 @@ if(process.env.NODE_ENV === 'development')
 {
     app.use(morgan('dev'))
 }
+
+//File Uploading
+app.use(fileupload())
+
 // Mount Routers
 app.use('/api/v1/users', require('./routes/users'))
 
