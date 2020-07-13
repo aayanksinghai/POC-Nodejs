@@ -1,5 +1,7 @@
 const User = require('../models/Users')
 const path = require('path')
+const { createUserDetails } = require('./userDetails')
+//const { data } = require('pdfkit/js/reference')
 
 
 //@desc Save User Details
@@ -36,6 +38,7 @@ exports.saveUserDetails = async (req, res, next) => {
             req.body.Photo = file.name
             
             const user = await User.create(req.body)
+            createUserDetails(user, `${file.name}`)
             res.status(201).json({ success: true, data: user })
         
         })
