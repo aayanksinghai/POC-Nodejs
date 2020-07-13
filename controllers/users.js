@@ -39,7 +39,6 @@ exports.saveUserDetails = async (req, res, next) => {
             res.status(201).json({ success: true, data: user })
         
         })
-     
     } 
     catch (err) {
         console.error(err)
