@@ -1135,9 +1135,9 @@ ul {
   overflow: hidden;
   font-size: 13px;
 }
-
 #child_1,
 #child_2,
-#child_3 {
+#child_3,
+#child_4 {
   display: none;
 }
