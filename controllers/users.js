@@ -1,7 +1,8 @@
 const User = require('../models/Users')
 const path = require('path')
 const { createUserDetails } = require('./userDetails')
-//const { data } = require('pdfkit/js/reference')
+const sendEmail = require('../utils/sendEmail')
+
 
 
 //@desc Save User Details
@@ -35,13 +36,24 @@ exports.saveUserDetails = async (req, res, next) => {
                 console.error(err)
                 return res.status(500).json({ success: false, data: 'Problem with file upload'})
             }
-            req.body.Photo = file.name
-            
-            const user = await User.create(req.body)
-            createUserDetails(user, `${file.name}`)
-            res.status(201).json({ success: true, data: user })
-        
         })
+
+        //req.body.Photo = `photo_${req.body.Name}`  //Creating Error
+            
+        const user = await User.create(req.body)
+
+        //Create PDF Template
+        //createUserDetails(user, `${file.name}`)
+
+        //Send Email
+        await sendEmail({
+            subject: `Second Rishta - ${req.body.Name}`,
+            message: `Received an attachment (PDF)`,
+            filename: `${file.name}`,
+            path: `${process.env.FILE_UPLOAD_PDF}/${file.name}`
+        })
+        
+        res.status(201).json({ success: true, data: user })
     } 
     catch (err) {
         console.error(err)
