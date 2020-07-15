@@ -2,6 +2,7 @@ const User = require('../models/Users')
 const path = require('path')
 const { createUserDetails } = require('./userDetails')
 const sendEmail = require('../utils/sendEmail')
+const shortid = require('shortid')
 
 
 
@@ -29,8 +30,12 @@ exports.saveUserDetails = async (req, res, next) => {
             return res.status(400).json({ success: false, data: `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`})
         }
 
+        //Generating unique id to concate with file name
+        const uid = shortid.generate()
+
+
         // Create custom filename
-        file.name = `photo_${req.body.Name}${path.parse(file.name).ext}`
+        file.name = `${uid}_${req.body.Name}${path.parse(file.name).ext}`
         file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err =>{
             if(err){
                 console.error(err)
@@ -38,19 +43,20 @@ exports.saveUserDetails = async (req, res, next) => {
             }
         })
 
-        //req.body.Photo = `photo_${req.body.Name}`  //Creating Error
+        req.body.Photo =  file.name      
             
         const user = await User.create(req.body)
 
         //Create PDF Template
-        //createUserDetails(user, `${file.name}`)
+        createUserDetails(user, `${uid}_${req.body.Name}.pdf`, file.name)
 
+        
         //Send Email
         await sendEmail({
             subject: `Second Rishta - ${req.body.Name}`,
             message: `Received an attachment (PDF)`,
-            filename: `${file.name}`,
-            path: `${process.env.FILE_UPLOAD_PDF}/${file.name}`
+            filename: `${uid}_${req.body.Name}.pdf`,
+            path: `${process.env.FILE_UPLOAD_PDF}/${uid}_${req.body.Name}.pdf`
         })
         
         res.status(201).json({ success: true, data: user })

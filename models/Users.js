@@ -172,6 +172,85 @@ const UserSchema = new mongoose.Schema({
             }
         }
     },
+
+    //Family Background 
+    FatherName: {
+        type: String,
+        required: [true, 'Please enter your father\'s name']
+    },
+    FatherOccupation: {
+        type: String,
+        required: [true, 'Please enter your father\'s occupation'],
+        enum: ['Private Sector', 'Government/Public Sector','Civil Services', 'Defence','Business/Self Employed', 'Not Working']
+    },
+
+    FatherMobileNumber: {
+        type: String,
+        required: [true, 'Please enter your father\'s mobile number'],
+        maxlength: [10, 'Mobile number can not be more than 10 digits']
+    },
+    MotherName: {
+        type: String,
+        required: [true, 'Please enter your mother\'s name']
+    },
+    MotherOccupation: {
+        type: String,
+        required: [true, 'Please enter your mother\'s occupation'],
+        enum: ['Private Sector', 'Government/Public Sector','Civil Services', 'Defence','Business/Self Employed', 'Not Working']
+    },
+
+    MotherMobileNumber: {
+        type: String,
+        required: [true, 'Please enter your mother\'s mobile number'],
+        maxlength: [10, 'Mobile number can not be more than 10 digits']
+    },
+    ParentAddress: {
+        type: String,
+        required: [true,'Please enter your parent\'s address']
+    },
+    FamilyOccupation: {
+        type: String,
+        required: [true, 'Please enter your family occupation']
+    },
+    AnnualFamilyIncome: {
+        type: String,
+        required: [true, 'Please enter your family income'],
+        enum: [
+            'No income',
+            '0-1 Lac',
+            '1-2 Lac',
+            '2-3 Lac',
+            '3-5 Lac',
+            '5-7.5 Lac',
+            '7.5-10 Lac',
+            '10-15 Lac',
+            '15-20 Lac',
+            '20-25 Lac',
+            '25-30 Lac',
+            '30-35 Lac',
+            '35-50 Lac',
+            '50-70 Lac',
+            '70L-1 Cr',
+            '1cr above'
+        ]
+    },
+    UnmarriedBrothers: {
+        type: Number,
+        required: [true, 'Please mention the detail']
+    }, 
+    UnmarriedSisters: {
+        type: Number,
+        required: [true, 'Please mention the detail']
+    },
+    MarriedBrothers: {
+        type: Number,
+        required: [true, 'Please mention the detail']
+    },
+    MarriedSisters: {
+        type: Number,
+        required: [true, 'Please mention the detail']
+    },
+
     //Education & Career
     Education: {
         type: String,
@@ -344,6 +423,10 @@ const UserSchema = new mongoose.Schema({
     City: {
         type: String,
         required: [true, 'Please add your birth city']
+    },
+    SakhaGotra: {
+        type: String,
+        required: [true, 'Please mention Sakha Gotra']
     },
     Manglik: {
         type: String,

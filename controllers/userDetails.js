@@ -2,10 +2,10 @@ const fs = require("fs");
 const PDFDocument = require("pdfkit");
 
 //Main Function to call
-function createUserDetails(data, filename) {
+function createUserDetails(data, filename, image) {
   let doc = new PDFDocument({ size: "A4", margin: 50 });
 
-  generateHeader(doc);
+  generateHeader(doc, image);
   generateDetails(doc, data);
   
   doc.end();
@@ -14,7 +14,7 @@ function createUserDetails(data, filename) {
 
 
 //Generating Header (HEADING)
-function generateHeader(doc) {
+function generateHeader(doc, image) {
   doc
     .fillColor("#444444")
     .font("Helvetica-Bold")
@@ -24,7 +24,7 @@ function generateHeader(doc) {
     .moveDown();
     
     //Image of person
-    doc.image("image.jpg", 230, 60, {fit: [100,100], align: 'center', valign: 'center'})
+    doc.image(`${process.env.FILE_UPLOAD_PATH}/${image}`, 230, 60, {fit: [100,100], align: 'center', valign: 'center'})
     //doc.image("Profile Pic.jpg", 230, 60, {width: 80, height: 100} )
 }
 
