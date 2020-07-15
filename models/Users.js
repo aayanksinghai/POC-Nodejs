@@ -236,19 +236,19 @@ const UserSchema = new mongoose.Schema({
     },
     UnmarriedBrothers: {
         type: Number,
-        required: [true, 'Please mention the detail']
+        default: 0
     }, 
     UnmarriedSisters: {
         type: Number,
-        required: [true, 'Please mention the detail']
+        default: 0
     },
     MarriedBrothers: {
         type: Number,
-        required: [true, 'Please mention the detail']
+        default: 0
     },
     MarriedSisters: {
         type: Number,
-        required: [true, 'Please mention the detail']
+        default: 0
     },
 
     //Education & Career
