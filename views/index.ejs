@@ -1633,7 +1633,7 @@
                 <p>Please fill in your location details as requested</p>
               </li>
               <li class="zf-tempFrmWrapper zf-small">
-                <label class="zf-labelName">Citizenship </label>
+                <label class="zf-labelName">Citizenship <em class="zf-important">*</em></label>
                 <div class="zf-tempContDiv">
                   <span>
                     <input
@@ -1656,7 +1656,7 @@
                 <div class="zf-clearBoth"></div>
               </li>
               <li class="zf-tempFrmWrapper zf-small">
-                <label class="zf-labelName">Residential Status </label>
+                <label class="zf-labelName">Residential Status <em class="zf-important">*</em></label>
                 <div class="zf-tempContDiv">
                   <span>
                     <input
@@ -1679,7 +1679,7 @@
                 <div class="zf-clearBoth"></div>
               </li>
               <li class="zf-tempFrmWrapper zf-small">
-                <label class="zf-labelName">Current Residence </label>
+                <label class="zf-labelName">Current Residence <em class="zf-important">*</em> </label>
                 <div class="zf-tempContDiv">
                   <span>
                     <input
@@ -1712,6 +1712,7 @@
         </div>
       </form>
     </div>
+    <!-- SPINNER --><div id="loader"></div>
     <code class="results__display"></code>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
@@ -1761,18 +1762,21 @@
           }
         })
         .change();*/
+        var spinner = $('#loader')
         
-        const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+        const formToJSON = elements => [].reduce.call(elements, (data, element) => 
+        {
           data[element.name] = element.value;
           return data;
-            }, {});
+        }, {});
 
-            function isNumberKey(evt){
+            function isNumberKey(evt)
+            {
               var charCode = (evt.which) ? evt.which : event.keyCode
               if (charCode > 31 && (charCode < 48 || charCode > 57))
                  {return false;}
               return true;
-}
+            }
           
 
 
@@ -1790,7 +1794,7 @@
 
           //JSON obj
           formData.append('objArr', JSON.stringify( data, null, " " ))
-          
+          spinner.show()
           $.ajax({
             url: 'http://192.168.1.12:5000/api/v1/users',
             type: "POST",
@@ -1798,9 +1802,12 @@
             contentType: false,
             data: formData,            
 	    	    success: function(result){  
+            spinner.hide()
             alert(result.message);
+            document.getElementById('form').reset();
             },
            error: function(result){
+             spinner.hide()
               alert(result.responseJSON.message)
             }
       });

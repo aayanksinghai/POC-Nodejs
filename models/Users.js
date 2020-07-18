@@ -370,7 +370,7 @@ const UserSchema = new mongoose.Schema({
     },
     SubCaste: {
         type: String,
-        required: [true,'Please add your sub-caste'],
+        default: 'NA',
         maxlength: [25, 'Sub-Caste can not be more than 25 characters']
     },
     FamilyValues: {
