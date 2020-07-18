@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
     MobileNumber: {
         type: String,
         required: [true, 'Please add your mobile number'],
-        maxlength: [10, 'Mobile Number can not be more than 10 characters']
+        minlength: [10, 'Mobile Number can not be less than 10 digits'],
+        maxlength: [10, 'Mobile Number can not be more than 10 digits']
     },
     Complexion: {
         type: String,
@@ -152,31 +153,26 @@ const UserSchema = new mongoose.Schema({
             "7 ft (213 cm) plus"
         ]
     },
+
     Children: {
         type: String,
-        required: [true, "Please mention children"],
-        enum: ['Yes', 'No'],
-        NoOfChildren: {
-            type: Number,
-            min: 0,
-            max: 5,
-            default: 0,
-            ChildrenDetails: {
-                type: [],
-                enum: ['Daughter', 'Son'],
-                default: null,
-                Age: {
-                    type: Number,
-                    default: 0
-                }
-            }
-        }
+        required: [true, 'Please mention children'],
+        enum: ['Yes', 'No'],   
+    },
+    NoOfSons: {
+        type: Number,
+        default: 0
+    },
+    NoOfDaughters: {
+        type: Number,
+        default: 0
     },
 
     //Family Background 
     FatherName: {
         type: String,
-        required: [true, 'Please enter your father\'s name']
+        required: [true, 'Please enter your father\'s name'],
+        maxlength: [30, 'Name cannot be more than 30 characters']
     },
     FatherOccupation: {
         type: String,
@@ -187,11 +183,13 @@ const UserSchema = new mongoose.Schema({
     FatherMobileNumber: {
         type: String,
         required: [true, 'Please enter your father\'s mobile number'],
+        minlength: [10, 'Mobile Number can not be less than 10 digits'],
         maxlength: [10, 'Mobile number can not be more than 10 digits']
     },
     MotherName: {
         type: String,
-        required: [true, 'Please enter your mother\'s name']
+        required: [true, 'Please enter your mother\'s name'],
+        maxlength: [30, 'Name cannot be more than 30 characters']
     },
     MotherOccupation: {
         type: String,
@@ -202,15 +200,18 @@ const UserSchema = new mongoose.Schema({
     MotherMobileNumber: {
         type: String,
         required: [true, 'Please enter your mother\'s mobile number'],
+        minlength: [10, 'Mobile Number can not be less than 10 digits'],
         maxlength: [10, 'Mobile number can not be more than 10 digits']
     },
     ParentAddress: {
         type: String,
-        required: [true,'Please enter your parent\'s address']
+        required: [true,'Please enter your parent\'s address'],
+        maxlength: [50, 'Address cannot be more than 50 characters']
     },
     FamilyOccupation: {
         type: String,
-        required: [true, 'Please enter your family occupation']
+        required: [true, 'Please enter your family occupation'],
+        maxlength: [30, 'Occupation cannot be more than 30 characters']
     },
     AnnualFamilyIncome: {
         type: String,
@@ -418,20 +419,23 @@ const UserSchema = new mongoose.Schema({
     },
     Country: {
         type: String,
-        required: [true, 'Please add your birth country']
+        required: [true, 'Please add your birth country'],
+        maxlength: [30, 'Country name cannot be more than 30 characters']
     },
     City: {
         type: String,
-        required: [true, 'Please add your birth city']
+        required: [true, 'Please add your birth city'],
+        maxlength: [30, 'City name cannot be more than 30 characters']
     },
     SakhaGotra: {
         type: String,
-        required: [true, 'Please mention Sakha Gotra']
+        required: [true, 'Please mention Sakha Gotra'],
+        maxlength: [30, 'Sakhta Gotra cannot be more than 30 characters']
     },
     Manglik: {
         type: String,
         required: [true, 'Please mention manglik status'],
-        enum: ['Manglik', 'Non Manglik', 'Angshik (partial manglik)']
+        enum: ['Yes', 'No', 'Angshik']
     },
 
     // Location

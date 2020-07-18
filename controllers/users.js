@@ -5,64 +5,74 @@ const sendEmail = require('../utils/sendEmail')
 const shortid = require('shortid')
 
 
-
 //@desc Save User Details
 //@route POST /api/v1/users
 //@access Public
 exports.saveUserDetails = async (req, res, next) => {
     try {
-        //console.log(req.body)
+        //via WEB APP
+         const dataObj = JSON.parse(req.body.objArr)
+         console.log(dataObj)
+
+        //via POSTMAN
+        //const dataObj = req.body
+       // console.log(dataObj)
+
         if(!req.files)
         {
-            return res.status(400).json({ success: false, data: 'Please upload a file'})
+            return res.status(400).json({ success: false, message: 'Please upload a file'})
         }
-
+      
         const file = req.files.file
 
         // Make sure the image is a photo
         if(!file.mimetype.startsWith('image'))
         {
-            return res.status(400).json({ success: false, data: 'Please upload an image file'})
+            return res.status(400).json({ success: false, message: 'Please upload an image file'})
         }
-
+        
         //Check filesize
         if(file.size > process.env.MAX_FILE_UPLOAD){
-            return res.status(400).json({ success: false, data: `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`})
+            return res.status(400).json({success: false, message: `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`})
         }
 
         //Generating unique id to concate with file name
         const uid = shortid.generate()
 
-
+       
+        
         // Create custom filename
-        file.name = `${uid}_${req.body.Name}${path.parse(file.name).ext}`
+        file.name = `${uid}_${dataObj.Name}${path.parse(file.name).ext}`
         file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err =>{
             if(err){
                 console.error(err)
-                return res.status(500).json({ success: false, data: 'Problem with file upload'})
+                return res.status(500).json({success: false,  message: 'Problem with file upload'})
             }
         })
 
-        req.body.Photo =  file.name      
-            
-        const user = await User.create(req.body)
+        dataObj.Photo =  file.name      
+        
+        //Saving into database
+        const user = await User.create(dataObj)
 
         //Create PDF Template
-        createUserDetails(user, `${uid}_${req.body.Name}.pdf`, file.name)
+        createUserDetails(user, `${uid}_${dataObj.Name}.pdf`, file.name)
 
         
         //Send Email
         await sendEmail({
-            subject: `Second Rishta - ${req.body.Name}`,
+            subject: `Second Rishta - ${dataObj.Name}`,
             message: `Received an attachment (PDF)`,
-            filename: `${uid}_${req.body.Name}.pdf`,
-            path: `${process.env.FILE_UPLOAD_PDF}/${uid}_${req.body.Name}.pdf`
+            filename: `${uid}_${dataObj.Name}.pdf`,
+            path: `${process.env.FILE_UPLOAD_PDF}/${uid}_${dataObj.Name}.pdf`
         })
         
-        res.status(201).json({ success: true, data: user })
+        res.status(201).json({ success: true, message: `Your Application has been received!` })
+        
     } 
     catch (err) {
         console.error(err)
-        res.status(400).json({ success: false, data: err.message})
+        res.status(400).json({ success: false, message: `Application Failed: ${err.message} Please try again!`})
     }
+    
 }

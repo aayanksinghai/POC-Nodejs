@@ -12,22 +12,7 @@ function createUserDetails(data, filename, image) {
   doc.pipe(fs.createWriteStream(`${process.env.FILE_UPLOAD_PDF}/${filename}`));
 }
 
-/*
-//Generating Header (HEADING)
-function generateHeader(doc, image) {
-  doc
-    .fillColor("#444444")
-    .font("Helvetica-Bold")
-    .fontSize(20)
-    .text("Second Rishta", 220, 40)
-    .rect(230,60,100,100)
-    .moveDown();
-    
-    //Image of person
-    doc.image(`${process.env.FILE_UPLOAD_PATH}/${image}`, 230, 60, {fit: [100,100], align: 'center', valign: 'center'})
-    //doc.image("Profile Pic.jpg", 230, 60, {width: 80, height: 100} )
-}
-*/
+
 
 // Filling Information
 function generateDetails(doc, data, image) {
@@ -110,7 +95,42 @@ function generateDetails(doc, data, image) {
       .text(data.Occupation,200,fixedTop + 230)
       .text(data.OccupationDetails,200,fixedTop + 245)
       .text(data.AnnualIncome,200,fixedTop + 260) // 50 + 245 = 295
-      
+
+
+      // CHILD SUB HEAD
+      if(data.Children == 'Yes'){
+        doc
+       .fillColor("#444444")
+       .fontSize(16)
+       .font("Helvetica-Bold")
+       .text("Children", 335, fixedTop + 160)
+
+       if(data.NoOfSons != 0){
+
+        doc  
+       .fontSize(10)
+       .fillColor('red')
+       .font("Helvetica")
+       .text("No of Son:",335, fixedTop + 200)
+       .font("Helvetica-Bold")
+       .fillColor('blue')
+       .text(data.NoOfSons,435,fixedTop + 200)
+       }
+
+       if(data.NoOfDaughters != 0){
+        doc  
+        .fontSize(10)
+        .fillColor('red')
+        .font("Helvetica")
+        .text("No. of Daughter:", 335, fixedTop + 215)
+        .font("Helvetica-Bold")
+        .fillColor('blue')
+        .text(data.NoOfDaughters,435,fixedTop + 200)
+
+       }
+      }
+       
+
     // 3rd Headline TEXT
     doc
       .fillColor("#444444")
@@ -129,9 +149,9 @@ function generateDetails(doc, data, image) {
       .text("Mother Name:", 50, fixedTop + 370)
       .text("Mother's Occupation:", 50, fixedTop + 385)
       .text("Mother's Mobile Number:", 50, fixedTop + 400)
-      .text("Parents Address:", 50, fixedTop + 415)
-      .text("Family Occupation:", 50, fixedTop + 430)
-      .text("Annual Family Income:", 50, fixedTop + 445)
+      .text("Parents Address:", 50, fixedTop + 445)
+      .text("Family Occupation:", 50, fixedTop + 415)
+      .text("Annual Family Income:", 50, fixedTop + 430)
       .text("Unmarried Brothers:", 50, fixedTop + 460)
       .text("Unmarried Sisters:", 50, fixedTop + 475)
       .text("Married Brothers:", 50, fixedTop + 490)
@@ -145,9 +165,9 @@ function generateDetails(doc, data, image) {
       .text(data.MotherName,200,fixedTop + 370)
       .text(data.MotherOccupation,200,fixedTop + 385)
       .text(data.MotherMobileNumber,200,fixedTop + 400)
-      .text(data.ParentAddress,200,fixedTop + 415)
-      .text(data.FamilyOccupation,200,fixedTop + 430)
-      .text(data.AnnualFamilyIncome,200,fixedTop + 445)
+      .text(data.ParentAddress,200,fixedTop + 445)
+      .text(data.FamilyOccupation,200,fixedTop + 415)
+      .text(data.AnnualFamilyIncome,200,fixedTop + 430)
       .text(data.UnmarriedBrothers,200,fixedTop + 460)
       .text(data.UnmarriedSisters,200,fixedTop + 475)  
       .text(data.MarriedBrothers,200,fixedTop + 490) 

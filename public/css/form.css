@@ -1141,3 +1141,115 @@ ul {
 #child_4 {
   display: none;
 }
+
+
+
+
+
+/**********instruction Message***********/
+@media only screen and (max-width: 768px){
+
+  /*SECOND RISHTA*/
+  .zf-tempHeadContBdr .zf-frmTitle {
+    color: #ffffff;
+    margin: 0;
+    padding: 0px;
+    font-size: 3em;
+
+}
+
+
+
+/* BASIC INFO*/
+.zf-section h2 {
+  border-bottom: 1px solid #d7d7d7;
+  font-size: 28px;
+  color: #000;
+  font-weight: 500;
+  font-family: "Open Sans", "Lucida Grande", Arial, Helvetica, sans-serif;
+  padding-bottom: 10px;
+  
+}
+
+/* SEC DESC*/
+.zf-section p {
+  color: #847f7f;
+  margin-top: 10px;
+  font-size: 16px;
+  max-width: 400px !important;
+  
+}
+
+
+
+/* LABEL NAME*/
+.zf-tempFrmWrapper .zf-labelName {
+  font-weight: bold;
+  font-size: 22px;
+  color: #444;
+
+}
+
+/*NUMBER*/
+.zf-phwrapper label {
+  display: block;
+  color: #888888;
+  font-size: 16px;
+  margin-top: 2px;
+  
+}
+
+/*DATE OF BIRTH*/
+.zf-date .zf-tempContDiv span label{
+       font-size: 16px; 
+      padding-top: 3px;
+ 
+    }
+
+
+/*TEXT FIELD*/
+.zf-tempContDiv input[type="text"]{
+    background: #fff;
+    border: 1px solid #111111;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 5px;
+    width: 40% !important;
+    font-size: 18px;
+}
+
+.zf-tempContDiv input[type="file"] {
+  outline: none;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 5px;
+  width: 40%;
+  font-size: 18px;
+}
+input{
+  outline: none;
+  margin: 0 auto;
+  padding: 5px 10px;
+  border: 1px solid #111111;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.zf-form-sBox {
+  padding: 4px;
+  width: 40% !important;
+  border: 1px solid #e5e5e5;
+  font-size: 18px;
+}
+
+.zf-fmFooter{
+  text-align: left;
+}
+.zf-fmFooter .zf-submitColor {
+  font-size: 22px;
+  padding: 4px 10px;
+}
+}
