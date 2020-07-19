@@ -129,22 +129,21 @@
                   <div class="zf-phwrapper">
                     <span>
                       <input
-                        type="tel"
-                        compname="PhoneNumber"
-                        name="MobileNumber"
-                        minlength="10"
-                        maxlength="10"
-                        checktype="c7"
-                        onkeypress="return isNumberKey(event)"
-                        value=""
-                        phoneFormat="1"
-                        isCountryCodeEnabled="true"
-                        fieldType="11"
-                        id="PhoneNumber"
-                        valType="number"
-                        phoneFormatType="2"
-                        required
-                      />
+                      type="tel"
+                      name="MobileNumber"
+                      minlength="10"
+                      maxlength="10"
+                      checktype="c7"
+                      onkeypress="return isNumberKey(event)"
+                      value=""
+                      phoneFormat="1"
+                      isCountryCodeEnabled="true"
+                      fieldType="11"
+                      id="PhoneNumber"
+                      phoneFormatType="2"
+                      valType="number"
+                      required
+                  />
                       <label>Number</label>
                     </span>
                     <div class="zf-clearBoth"></div>
@@ -1706,6 +1705,7 @@
           <ul>
             <li class="zf-fmFooter">
               <button class="zf-submitColor" type="submit">Submit</button>
+              <br/><br/>
               <button class="zf-submitColor" type="reset">Reset</button>
             </li>
           </ul>
@@ -1796,7 +1796,7 @@
           formData.append('objArr', JSON.stringify( data, null, " " ))
           spinner.show()
           $.ajax({
-            url: 'http://192.168.1.12:5000/api/v1/users',
+            url: 'http://192.168.43.113:5000/api/v1/users',
             type: "POST",
             processData:false,
             contentType: false,

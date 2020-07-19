@@ -100,6 +100,7 @@ button {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box; /* Opera/IE 8+ */
+  width: 100%;
 }
 
 img,
@@ -173,12 +174,15 @@ ul {
 }
 
 .zf-templateWidth {
-  margin: 1% auto;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+
 }
 
-.zf-templateWidth {
+/* .zf-templateWidth {
   width: 800px;
-}
+} */
 
 .zf-templateWrapper {
   background: #fff;
@@ -219,7 +223,7 @@ ul {
   height: 75px;
 }
 .arrangeAddress .zf-addrCont span.zf-addtwo {
-  width: 99% !important;
+  width: 100% !important;
   float: none !important;
 }
 /**********Error Message***********/
@@ -314,6 +318,7 @@ ul {
   padding: 4px;
   border: 1px solid #e5e5e5;
   font-size: 13px;
+  width: 100%;
 }
 
 .zf-name .zf-tempContDiv span,
@@ -321,6 +326,7 @@ ul {
 .zf-time .zf-tempContDiv span {
   float: left;
   display: block;
+  width: 100% !important;
 }
 
 .zf-name .zf-tempContDiv span {
@@ -358,6 +364,7 @@ ul {
   display: block;
   padding-top: 3px;
   text-align: center;
+  width: 100%;
 }
 .zf-phone .zf-tempContDiv .zf-symbols {
   padding-top: 5px;
@@ -407,7 +414,7 @@ ul {
   border: 1px solid #ccc;
   margin: 0 auto;
   padding: 5px;
-  width: auto;
+  width: 100%;
 }
 
 .zf-address .zf-tempContDiv span,
@@ -699,7 +706,7 @@ ul {
 .zf-small .zf-mSelect select,
 .zf-small .zf-tempContDiv .zf-sliderCont,
 .zf-small .zf-tempContDiv .zf-pdfTextArea {
-  width: 50%;
+  width: 100%;
 }
 .zf-medium .zf-tempContDiv input[type="text"],
 .zf-medium .zf-tempContDiv textarea,
@@ -717,10 +724,10 @@ ul {
 }
 
 .zf-small .zf-tempContDiv .zf-form-sBox {
-  width: 50%;
+  width: 100%;
 }
 .zf-medium .zf-tempContDiv .zf-form-sBox {
-  width: 75%;
+  width: 100%;
 }
 .zf-large .zf-tempContDiv .zf-form-sBox {
   width: 100%;
@@ -1027,14 +1034,14 @@ ul {
 }
 
 .zf-medium .zf-phwrapper {
-  width: 75%;
+  width: 100%;
 }
 .zf-phwrapper.zf-phNumber span {
   width: 100% !important;
 }
 .zf-phwrapper span:first-child {
   margin-left: 0;
-  width: 22%;
+  width: 100%;
 }
 .zf-phwrapper label {
   display: block;
@@ -1046,8 +1053,14 @@ ul {
 .zf-small .zf-phonefld input[type="text"] {
   width: 100%;
 }
+
+/* .zf-medium .zf-phonefld input[type="tel"],
+.zf-small .zf-phonefld input[type="tel"] {
+  width: 100% !important;
+} */
+
 .zf-small .zf-phwrapper {
-  width: 50%;
+  width: 100%;
 }
 .zf-tempFrmWrapper.zf-phone span {
   width: auto;
@@ -1056,7 +1069,7 @@ ul {
 .zf-phwrapper span {
   margin-bottom: 10px;
   float: left;
-  width: 76%;
+  width: 100%;
   margin-left: 2%;
 }
 .zf-descFld a {
@@ -1197,7 +1210,7 @@ ul {
 /* LABEL NAME*/
 .zf-tempFrmWrapper .zf-labelName {
   font-weight: bold;
-  font-size: 22px;
+  font-size: 16px;
   color: #444;
 
 }
@@ -1227,7 +1240,7 @@ ul {
     -moz-border-radius: 2px;
     border-radius: 2px;
     padding: 5px;
-    width: 40% !important;
+    width: 100% !important;
     font-size: 18px;
 }
 
@@ -1236,7 +1249,7 @@ ul {
   border: 1px solid #ccc;
   margin: 0 auto;
   padding: 5px;
-  width: 40%;
+  width: 100%;
   font-size: 18px;
 }
 input{
@@ -1252,7 +1265,6 @@ input{
 
 .zf-form-sBox {
   padding: 4px;
-  width: 40% !important;
   border: 1px solid #e5e5e5;
   font-size: 18px;
 }
