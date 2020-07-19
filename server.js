@@ -72,7 +72,7 @@ app.use('/api/v1/users', require('./routes/users'))
 
 const PORT = process.env.PORT || 8080
 
-const server = app.listen(PORT, '192.168.43.113' || 'localhost', console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+const server = app.listen(PORT, '<YOUR IP>' || 'localhost', console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
