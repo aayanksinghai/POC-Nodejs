@@ -453,6 +453,19 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add your current residence'],
         maxlength: [30, 'Current Residence can not be more than 30 characters']
+    },
+
+    //Payment Information
+    Payment: {
+        type: String,
+        enum: ['Yes','No'],
+        default: 'No'
+    },
+    PaymentId:{
+        type: String,
+    },
+    RazorPayOrderId: {
+        type: String
     }
 
 })

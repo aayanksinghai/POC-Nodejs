@@ -1,9 +1,9 @@
 const User = require('../models/Users')
 const path = require('path')
+const dotenv = require('dotenv')
 const { createUserDetails } = require('./userDetails')
 const sendEmail = require('../utils/sendEmail')
 const shortid = require('shortid')
-
 
 //@desc Save User Details
 //@route POST /api/v1/users
@@ -14,6 +14,7 @@ exports.saveUserDetails = async (req, res, next) => {
          const dataObj = JSON.parse(req.body.objArr)
          console.log(dataObj)
 
+        
         //via POSTMAN
         //const dataObj = req.body
        // console.log(dataObj)
@@ -66,8 +67,10 @@ exports.saveUserDetails = async (req, res, next) => {
             filename: `${uid}_${dataObj.Name}.pdf`,
             path: `${process.env.FILE_UPLOAD_PDF}/${uid}_${dataObj.Name}.pdf`
         })
+
         
         res.status(201).json({ success: true, message: `Your Application has been received!` })
+      
         
     } 
     catch (err) {

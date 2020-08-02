@@ -47,6 +47,7 @@
                       name="Name"
                       checktype="c1"
                       value=""
+                      id="Name"
                       maxlength="255"
                       fieldType="1"
                       required
@@ -136,6 +137,7 @@
                       checktype="c7"
                       onkeypress="return isNumberKey(event)"
                       value=""
+                      id="pn"
                       phoneFormat="1"
                       isCountryCodeEnabled="true"
                       fieldType="11"
@@ -1710,12 +1712,30 @@
             </li>
           </ul>
         </div>
+            
+      </form>
+      <form method = "POST" action="/order" name="payment" id = "payment">
+            <input type="hidden" name="user_name" id = "user_name">
+            <input type="hidden" name="user_mobile" id = "user_mobile" >
+            <input type="hidden" name="itemId" value="SRTicket">
+            <input type="hidden" name="amount" value="20000">
+            <input type="hidden" name="itemDesc" value="Second Rishta Registration Fees">
       </form>
     </div>
     <!-- SPINNER --><div id="loader"></div>
     <code class="results__display"></code>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
+      /* $('#Name').on("keyup", function(){
+       $("input[name=user_name]").val($('#Name').val());
+          });
+
+        $('#MobileNumber').on("keyup", function(){
+        $("input[name=user_mobile]").val($('#MobileNumber').val());
+          });
+          */
+         
+
 
       $("#check")
         .change(function () {
@@ -1770,6 +1790,8 @@
           return data;
         }, {});
 
+        
+        
             function isNumberKey(evt)
             {
               var charCode = (evt.which) ? evt.which : event.keyCode
@@ -1778,13 +1800,20 @@
               return true;
             }
           
-
-
-
         const handleFormSubmit = event => {
           event.preventDefault();
           
+         var nameee = document.getElementById("Name").value;
+         var mobilee = document.getElementById("pn").value;
+
+         var form_name = document.getElementById("user_name");
+         var form_mobile = document.getElementById("user_mobile");
+
+         form_name.value = nameee;
+         form_mobile.value = mobilee;
+
           const data = formToJSON(form.elements);
+        
           var logoImg = $('input[name="file"]').get(0).files[0];
           var formData = new FormData();
           formData.append('file', logoImg);
@@ -1796,7 +1825,7 @@
           formData.append('objArr', JSON.stringify( data, null, " " ))
           spinner.show()
           $.ajax({
-            url: 'http://<YOURIP>:5000/api/v1/users',
+            url: 'http://192.168.1.12:5000/api/v1/users',
             type: "POST",
             processData:false,
             contentType: false,
@@ -1804,11 +1833,17 @@
 	    	    success: function(result){  
             spinner.hide()
             alert(result.message);
-            document.getElementById('form').reset();
+           // document.getElementById('form').reset();
+           document.getElementById('payment').submit();
+           //$("#payment").submit();
+            console.log('Submitting Form')
+            //location.href = '/payment'
+            
             },
            error: function(result){
              spinner.hide()
               alert(result.responseJSON.message)
+              
             }
       });
         };
