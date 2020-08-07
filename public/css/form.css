@@ -173,11 +173,20 @@ ul {
   background: #f5f5f5;
 }
 
+@media only screen and (max-width: 768px) {
 .zf-templateWidth {
-  display: flex;
+  display: flex !important;
+  width: 100% !important;
+  margin: auto !important;
+  justify-content: center !important;
+}
+}
+
+.zf-templateWidth {
+  display: block;
+  width: 800px;
   margin: auto;
   justify-content: center;
-
 }
 
 /* .zf-templateWidth {
