@@ -673,6 +673,7 @@ ul {
 .zf-fmFooter .zf-submitColor {
   font-size: 14px;
   padding: 4px 10px;
+  width: 100px;
 }
 
 .zf-submitColor {
@@ -1284,5 +1285,7 @@ input{
 .zf-fmFooter .zf-submitColor {
   font-size: 22px;
   padding: 4px 10px;
+  width: 200px;
+  margin-left: 65px;
 }
 }
