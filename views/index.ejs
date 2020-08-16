@@ -1825,7 +1825,7 @@
           formData.append('objArr', JSON.stringify( data, null, " " ))
           spinner.show()
           $.ajax({
-            url: '/api/v1/users',
+            url: 'https://secondrishta.herokuapp.com/api/v1/users',
             type: "POST",
             processData:false,
             contentType: false,
