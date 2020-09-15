@@ -75,7 +75,7 @@ exports.saveUserDetails = async (req, res, next) => {
     } 
     catch (err) {
         console.error(err)
-        res.status(400).json({ success: false, message: `Application Failed: ${err.message} Please try again!`})
+        return res.status(400).json({ success: false, message: `Application Failed: ${err.message} Please try again!`})
     }
     
 }
