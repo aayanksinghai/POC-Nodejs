@@ -2,7 +2,6 @@ const User = require('../models/Users')
 const path = require('path')
 const dotenv = require('dotenv')
 const { createUserDetails } = require('./userDetails')
-const sendEmail = require('../utils/sendEmail')
 const shortid = require('shortid')
 
 //@desc Save User Details
@@ -51,7 +50,8 @@ exports.saveUserDetails = async (req, res, next) => {
             }
         })
 
-        dataObj.Photo =  file.name      
+        dataObj.Photo =  file.name  
+        dataObj.uid = uid    
         
         //Saving into database
         const user = await User.create(dataObj)
@@ -59,19 +59,8 @@ exports.saveUserDetails = async (req, res, next) => {
         //Create PDF Template
         createUserDetails(user, `${uid}_${dataObj.Name}.pdf`, file.name)
 
-        
-        //Send Email
-        await sendEmail({
-            subject: `Second Rishta - ${dataObj.Name}`,
-            message: `Received an attachment (PDF)`,
-            filename: `${uid}_${dataObj.Name}.pdf`,
-            path: `${process.env.FILE_UPLOAD_PDF}/${uid}_${dataObj.Name}.pdf`
-        })
-
-        
-        res.status(201).json({ success: true, message: `Your Application has been received!` })
-      
-        
+        res.status(201).json({ success: true, message: `Your Application has been received!` })      
+           
     } 
     catch (err) {
         console.error(err)
